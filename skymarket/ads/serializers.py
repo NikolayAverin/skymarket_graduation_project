@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-
 # TODO Сериалайзеры. Предлагаем Вам такую структуру, однако вы вправе использовать свою
+
 
 class CommentSerializer(serializers.ModelSerializer):
     # TODO сериалайзер для модели

@@ -12,4 +12,3 @@ class AdViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     pass
-
