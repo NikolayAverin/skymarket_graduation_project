@@ -7,6 +7,7 @@ from users.managers import UserManager
 
 class UserRoles:
     """Модель выбора роли пользователя."""
+
     ADMIN = "admin"
     USER = "user"
     choices = [("admin", "Администратор"), ("user", "Пользователь")]
@@ -14,6 +15,7 @@ class UserRoles:
 
 class User(AbstractBaseUser):
     """Модель пользователя."""
+
     username = None
     first_name = models.CharField(max_length=50, verbose_name="Имя")
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
@@ -53,3 +55,10 @@ class User(AbstractBaseUser):
     @property
     def is_user(self):
         return self.role == UserRoles.USER
+
+    def __str__(self):
+        return self.email
+
+    class Meta:
+        verbose_name = "Пользователь"
+        verbose_name_plural = "Пользователи"
