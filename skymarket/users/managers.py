@@ -2,8 +2,7 @@ from django.contrib.auth.models import BaseUserManager
 
 
 class UserManager(BaseUserManager):
-    """Функция создания пользователя — в нее мы передаем обязательные поля"""
-
+    """Функция создания пользователя — в нее мы передаем обязательные поля."""
     def create_user(self, email, first_name, last_name, phone, role, password=None):
         if not email:
             raise ValueError("Users must have an email address")

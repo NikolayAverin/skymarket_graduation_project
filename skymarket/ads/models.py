@@ -3,8 +3,7 @@ from django.db import models
 
 
 class Ad(models.Model):
-    """Модель объявления"""
-
+    """Модель объявления."""
     title = models.CharField(
         max_length=150,
         verbose_name="название товара",
@@ -27,6 +26,13 @@ class Ad(models.Model):
         verbose_name="время и дата создания объявления",
         help_text="время и дата создания объявления",
     )
+    image = models.ImageField(
+        upload_to="ads",
+        blank=True,
+        null=True,
+        verbose_name="Изображение",
+        help_text="загрузите изображение",
+    )
 
     def __str__(self):
         return self.title
@@ -38,8 +44,7 @@ class Ad(models.Model):
 
 
 class Comment(models.Model):
-    """Модель отзыва"""
-
+    """Модель отзыва."""
     text = models.TextField(verbose_name="текст отзыва", help_text="напишите отзыв")
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
