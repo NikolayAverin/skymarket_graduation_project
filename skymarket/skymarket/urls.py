@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.urls import include, path
 from drf_yasg import openapi, views
 from rest_framework import permissions
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 schema_view = views.get_schema_view(
     openapi.Info(
@@ -18,6 +19,8 @@ schema_view = views.get_schema_view(
     permission_classes=(permissions.AllowAny,),
 )
 
+import djoser
+
 urlpatterns = [
     path("api/admin/", admin.site.urls, name="admin"),
     path("api/redoc-tasks/", include("redoc.urls"), name="redoc_tasks"),
@@ -29,9 +32,11 @@ urlpatterns = [
     path(
         "api/redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
-    path("api/auth/", include("djoser.urls"), name="djoser"),
-    path("api/auth/", include("djoser.urls.jwt"), name="djoser_jwt"),
+    # path("api/auth/", include("djoser.urls"), name="djoser"),
+    # path("api/auth/", include("djoser.urls.jwt"), name="djoser_jwt"),
+
     path("api/", include("users.urls"), name="users"),
     path("api/", include("ads.urls"), name="ads"),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
