@@ -4,8 +4,9 @@ from django.db import models
 
 class Ad(models.Model):
     """Модель объявления."""
+
     title = models.CharField(
-        max_length=150,
+        max_length=200,
         verbose_name="название товара",
         help_text="напишите название товара",
     )
@@ -45,6 +46,7 @@ class Ad(models.Model):
 
 class Comment(models.Model):
     """Модель отзыва."""
+
     text = models.TextField(verbose_name="текст отзыва", help_text="напишите отзыв")
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,

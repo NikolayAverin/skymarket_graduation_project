@@ -3,7 +3,8 @@ from django.contrib.auth.models import BaseUserManager
 
 class UserManager(BaseUserManager):
     """Функция создания пользователя — в нее мы передаем обязательные поля."""
-    def create_user(self, email, first_name, last_name, phone, role, password=None):
+
+    def create_user(self, email, first_name, last_name, phone, image, password=None):
         if not email:
             raise ValueError("Users must have an email address")
         user = self.model(
@@ -11,13 +12,16 @@ class UserManager(BaseUserManager):
             first_name=first_name,
             last_name=last_name,
             phone=phone,
-            role=role,
+            image=image,
+            role="user",
         )
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, first_name, last_name, phone, password=None):
+    def create_superuser(
+        self, email, first_name, last_name, phone, image, password=None
+    ):
         """
         Функция для создания суперпользователя — с ее помощью мы создаем админинстратора
         это можно сделать с помощью команды createsuperuser
@@ -28,6 +32,7 @@ class UserManager(BaseUserManager):
             last_name=last_name,
             phone=phone,
             password=password,
+            image=image,
             role="admin",
         )
         user.save(using=self._db)

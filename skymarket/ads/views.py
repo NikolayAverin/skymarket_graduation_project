@@ -11,6 +11,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 class AdPagination(pagination.PageNumberPagination):
     """Пагинация."""
+
     page_size = 4
     page_size_query_param = "page_size"
     max_page_size = 10
@@ -18,6 +19,7 @@ class AdPagination(pagination.PageNumberPagination):
 
 class AdViewSet(viewsets.ModelViewSet):
     """Вьюсет для модели объявления."""
+
     queryset = Ad.objects.all()
     serializer_class = AdSerializer
     pagination_class = AdPagination
@@ -65,6 +67,7 @@ class AdViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     """Вьюсет для модели отзыва."""
+
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 

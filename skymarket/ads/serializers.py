@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 class CommentSerializer(serializers.ModelSerializer):
     """Сериалайзер для комментария."""
+
     author_first_name = serializers.CharField(
         source="author.first_name", read_only=True
     )
@@ -17,6 +18,7 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class AdSerializer(serializers.ModelSerializer):
     """Сериалайзер для объявления."""
+
     class Meta:
         model = Ad
         fields = (
@@ -30,6 +32,7 @@ class AdSerializer(serializers.ModelSerializer):
 
 class AdDetailSerializer(serializers.ModelSerializer):
     """Сериалайзер для детального представления объявления."""
+
     author_first_name = serializers.CharField(
         source="author.first_name", read_only=True
     )
@@ -38,4 +41,4 @@ class AdDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ad
-        exclude = ('created_at',)
+        exclude = ("created_at",)
