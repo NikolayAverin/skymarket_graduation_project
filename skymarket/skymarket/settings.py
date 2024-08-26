@@ -113,11 +113,7 @@ AUTH_USER_MODEL = "users.User"
 
 DATABASES = {
     "default": {
-<<<<<<< HEAD
         "ENGINE": "django.db.backends.postgresql",
-=======
-        "ENGINE": 'django.db.backends.postgresql',
->>>>>>> main
         "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
