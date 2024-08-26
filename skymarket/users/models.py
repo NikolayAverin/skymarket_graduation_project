@@ -6,7 +6,6 @@ from users.managers import UserManager
 
 class UserRoles:
     """Модель выбора роли пользователя."""
-
     ADMIN = "admin"
     USER = "user"
     choices = [("admin", "Администратор"), ("user", "Пользователь")]
@@ -14,17 +13,13 @@ class UserRoles:
 
 class User(AbstractBaseUser):
     """Модель пользователя."""
-
     username = None
     first_name = models.CharField(max_length=50, verbose_name="Имя")
     last_name = models.CharField(max_length=50, verbose_name="Фамилия")
     email = models.EmailField(unique=True, verbose_name="Email")
     phone = PhoneNumberField(verbose_name="Телефон")
     role = models.CharField(
-        max_length=10,
-        choices=UserRoles.choices,
-        verbose_name="Роль",
-        default=UserRoles.USER,
+        max_length=10, choices=UserRoles.choices, verbose_name="Роль"
     )
     image = models.ImageField(
         upload_to="users", verbose_name="Аватар", null=True, blank=True
