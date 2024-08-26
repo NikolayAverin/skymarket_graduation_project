@@ -14,7 +14,7 @@ services:
       timeout: 5s
       retries: 5
 
-<<<<<<< HEAD
+
   app:
     build: ../.
     tty: true
@@ -29,8 +29,7 @@ services:
     env_file:
       - ../.env
 
-=======
->>>>>>> main
+
   frontend:
     build: ../frontend_react/.
     volumes:
