@@ -32,9 +32,12 @@ urlpatterns = [
     path(
         "api/redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"
     ),
+<<<<<<< HEAD
+=======
     # path("api/auth/", include("djoser.urls"), name="djoser"),
     # path("api/auth/", include("djoser.urls.jwt"), name="djoser_jwt"),
 
+>>>>>>> main
     path("api/", include("users.urls"), name="users"),
     path("api/", include("ads.urls"), name="ads"),
 

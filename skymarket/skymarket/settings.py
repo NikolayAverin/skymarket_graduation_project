@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from datetime import timedelta
 from pathlib import Path
+
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -89,11 +90,15 @@ REST_FRAMEWORK = {
 
 DJOSER = {
     "SERIALIZERS": {"user_create": "users.serializers.UserRegistrationSerializer"},
+    "EMAIL": {
+        "activation": "users.email.ActivationEmail",
+        "password_reset": "users.email.PasswordResetEmail",
+    },
     "LOGIN_FIELD": "email",
     "SEND_ACTIVATION_EMAIL": True,
-    "ACTIVATION_URL": "api/auth/users/activation/{uid}/{token}",
-    "PASSWORD_RESET_URL": "api/auth/users/reset_password/{uid}/{token}",
-    "PASSWORD_RESET_CONFIRM_URL": "api/auth/users/reset_password_confirm/{uid}/{token}",
+    "ACTIVATION_URL": "api/users/activation/{uid}/{token}",
+    "PASSWORD_RESET_URL": "api/users/reset_password/{uid}/{token}",
+    "PASSWORD_RESET_CONFIRM_URL": "api/users/reset_password_confirm/{uid}/{token}",
 }
 
 SIMPLE_JWT = {
@@ -108,7 +113,11 @@ AUTH_USER_MODEL = "users.User"
 
 DATABASES = {
     "default": {
+<<<<<<< HEAD
+        "ENGINE": "django.db.backends.postgresql",
+=======
         "ENGINE": 'django.db.backends.postgresql',
+>>>>>>> main
         "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
@@ -162,6 +171,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    os.getenv("CORS_ALLOWED_ORIGINS"),
     os.getenv("CSRF_TRUSTED_ORIGINS"),
 ]
 
