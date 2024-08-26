@@ -8,6 +8,7 @@ User = get_user_model()
 
 class UserRegistrationSerializer(BaseUserRegistrationSerializer):
     """Сериализатор для регистрации пользователя."""
+
     class Meta:
         model = User
         fields = "__all__"
@@ -15,6 +16,7 @@ class UserRegistrationSerializer(BaseUserRegistrationSerializer):
 
 class CurrentUserSerializer(serializers.ModelSerializer):
     """Сериализатор текущего пользователя."""
+
     class Meta:
         model = User
         fields = "__all__"

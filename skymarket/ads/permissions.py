@@ -4,6 +4,7 @@ from users.models import UserRoles
 
 class IsAdmin(BasePermission):
     """Проверка наличия прав администратора."""
+
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated
 
@@ -13,6 +14,7 @@ class IsAdmin(BasePermission):
 
 class IsOwner(BasePermission):
     """Проверка наличия прав создателя."""
+
     def has_permission(self, request, view):
         return request.user and request.user.is_authenticated
 
