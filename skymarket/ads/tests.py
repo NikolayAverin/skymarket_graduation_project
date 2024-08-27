@@ -1,6 +1,6 @@
-from rest_framework import status
-from rest_framework.test import APITestCase, APIClient
 from ads.models import Ad, Comment
+from rest_framework import status
+from rest_framework.test import APIClient, APITestCase
 from users.models import User
 
 
@@ -13,7 +13,7 @@ class AdTestCase(APITestCase):
             first_name="Test",
             last_name="User",
             phone="79991234567",
-            is_active=True
+            is_active=True,
         )
         self.client.force_authenticate(user=self.user)
         self.ad = Ad.objects.create(
@@ -71,7 +71,7 @@ class CommentTestCase(APITestCase):
             first_name="Test",
             last_name="User",
             phone="79991234567",
-            is_active=True
+            is_active=True,
         )
         self.client.force_authenticate(user=self.user)
         self.ad = Ad.objects.create(
@@ -113,12 +113,16 @@ class CommentTestCase(APITestCase):
     def test_update_comment(self):
         """Тестирование изменения комментария."""
         data = {"text": "Updated Test comment"}
-        response = self.client.patch(f"/api/ads/{self.ad.id}/comments/{self.comment.id}/", data=data)
+        response = self.client.patch(
+            f"/api/ads/{self.ad.id}/comments/{self.comment.id}/", data=data
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["text"], "Updated Test comment")
 
     def test_delete_comment(self):
         """Тестирование удаления комментария."""
-        response = self.client.delete(f"/api/ads/{self.ad.id}/comments/{self.comment.id}/")
+        response = self.client.delete(
+            f"/api/ads/{self.ad.id}/comments/{self.comment.id}/"
+        )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Comment.objects.count(), 0)
