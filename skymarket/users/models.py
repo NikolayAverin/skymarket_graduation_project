@@ -21,7 +21,7 @@ class User(AbstractBaseUser):
     email = models.EmailField(unique=True, verbose_name="Email")
     phone = PhoneNumberField(verbose_name="Телефон")
     role = models.CharField(
-        max_length=10, choices=UserRoles.choices, verbose_name="Роль"
+        max_length=10, choices=UserRoles.choices, verbose_name="Роль", null=True, blank=True
     )
     image = models.ImageField(
         upload_to="users", verbose_name="Аватар", null=True, blank=True
